@@ -13,7 +13,7 @@ const Login = () => {
     const handleLogin: React.MouseEventHandler<HTMLButtonElement> = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
         const auth = getAuth(app);
-        signInWithEmailAndPassword(auth, emailRef.current?.value, passwordRef.current?.value)
+        signInWithEmailAndPassword(auth, String(emailRef?.current?.value), String(passwordRef.current?.value))
             .then((userCredential) => {
                 // Signed in 
                 const user = userCredential.user;
