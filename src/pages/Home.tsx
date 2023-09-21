@@ -64,12 +64,11 @@ export default function Home() {
     return (
         <>
             <Navbar handleSearch={handleSearch} />
-            <main className="overflow-y-auto h-screen pb-20 max-w-[1124px] mx-auto">
+            <main className="overflow-y-auto h-screen pb-20 max-w-[1124px] mx-auto no-scrollbar">
                 {
                     show ?
-
                         <section
-                            className='px-3 py-4 grid  grid-cols-custom gap-4'>
+                            className='px-3 py-4 grid  grid-cols-custom gap-4 no-scrollbar'>
                             <DndContext collisionDetection={closestCenter} onDragEnd={(e) => onDragEnd(e)}>
                                 <SortableContext items={images} strategy={rectSortingStrategy}>
                                     {
