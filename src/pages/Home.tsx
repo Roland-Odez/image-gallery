@@ -25,7 +25,7 @@ export default function Home() {
 
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
         const copyImage = [...imageData]
-        const searchResult = copyImage.filter((image, id) => {
+        const searchResult = copyImage.filter((image) => {
             let contain = false;
             image.tag.forEach((el) => {
                 if (el === e.currentTarget.value) {
@@ -73,7 +73,7 @@ export default function Home() {
                             <DndContext collisionDetection={closestCenter} onDragEnd={(e) => onDragEnd(e)}>
                                 <SortableContext items={images} strategy={rectSortingStrategy}>
                                     {
-                                        images.map((image, idx) => (
+                                        images.map((image) => (
                                             <ImageContainer key={image?.id} image={image} />
 
                                         ))}
