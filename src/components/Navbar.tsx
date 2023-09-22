@@ -20,7 +20,6 @@ const Navbar = ({ handleSearch }: { handleSearch: React.ChangeEventHandler }) =>
     useEffect(() => {
         const auth = getAuth(app);
         onAuthStateChanged(auth, (user) => {
-            console.log(user)
             if (user) {
                 setAuthData(auth)
             } else {
@@ -35,7 +34,7 @@ const Navbar = ({ handleSearch }: { handleSearch: React.ChangeEventHandler }) =>
     const handleClick: React.MouseEventHandler<HTMLButtonElement> = () => {
 
         setShow((like) => !like)
-        console.log(" 0000000000000")
+
     }
     const handleLogout: React.MouseEventHandler<HTMLButtonElement> = () => {
         authData.signOut()

@@ -1,13 +1,15 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { app } from '../firebase/config';
 import { useNavigate } from "react-router-dom";
 
 
-
 const Login = () => {
     const emailRef = useRef<HTMLInputElement | null>(null)
     const passwordRef = useRef<HTMLInputElement | null>(null)
+    const [message, setMessage] = useState<string>('')
+    const [alert, setAlert] = useState<boolean>(false)
+    const [status, setStatus] = useState<boolean>(false)
     const navigate = useNavigate()
 
     const handleLogin: React.MouseEventHandler<HTMLButtonElement> = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -18,20 +20,35 @@ const Login = () => {
                 // Signed in 
                 const user = userCredential.user;
                 if (user) {
-                    navigate('/')
+                    setMessage('user Authenticated!')
+                    setStatus(true)
+                    setAlert(true)
+                    setTimeout(() => {
+                        setAlert(false)
+                        navigate('/')
+                        setMessage(``)
+                    }, 3000)
+
                 }
                 // ...
             })
             .catch((error) => {
-                const errorCode = error.code;
+                // const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log('firebaseCode', errorCode,)
-                console.log('firebaseError', errorMessage,)
+                setMessage(`${errorMessage}`)
+                setStatus(false)
+                setAlert(true)
+                setTimeout(() => {
+                    setAlert(false)
+                    setMessage(``)
+                }, 3000)
             });
     }
 
+
+
     return (
-        <main className="overflow-y-auto h-screen pb-20 max-w-[1124px] mx-auto">
+        <main className="overflow-y-auto h-screen pb-20 max-w-[1124px] no-scrollbar mx-auto">
             <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                     <h1 className='whitespace-nowrap text-3xl lg:text-5xl font-bold text-center font-pacific'>I-Gallery</h1>
@@ -65,6 +82,20 @@ const Login = () => {
                     </form>
                 </div>
             </div>
+            {
+                alert &&
+                <div className='absolute top-4 right-4'>
+                    {
+                        status ?
+                            <div className="bg-[#00ab6b] text-sm text-white rounded-md p-4" role="alert">
+                                <span className="font-bold">Success</span> alert! {`${message}`}
+                            </div> :
+                            <div className="bg-red-500 text-sm text-white rounded-md p-4" role="alert">
+                                <span className="font-bold">Error</span> alert! {`${message}`}
+                            </div>
+                    }
+                </div>
+            }
         </main>
 
     )

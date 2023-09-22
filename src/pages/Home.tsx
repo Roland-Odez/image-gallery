@@ -81,7 +81,7 @@ export default function Home() {
             <main className="overflow-y-auto h-screen pb-20 max-w-[1124px] mx-auto no-scrollbar">
                         <section
                     ref={sortableContainer}
-                    className='px-3 py-4 grid  grid-cols-custom gap-4 no-scrollbar'>
+                    className='px-3 py-4 grid grid-cols-2 md:grid-cols-custom gap-2 md:gap-4 no-scrollbar'>
 
                                     {
                                         images.map((image) => (
