@@ -28,6 +28,13 @@ const ImageContainer = ({ image }: { image: ImageType }) => {
                 className='absolute top-0 left-0 z-10 w-full h-full object-center block object-cover'
                 draggable={true}
             />
+            <div className='flex items-center absolute bottom-0 right-0 w-full z-20 justify-center bg-[#00000063]'>
+                {
+                    image.tag.map((item) => (
+                        <span className='text-sm p-2 text-white font-medium'>{item}</span>
+                    ))
+                }
+            </div>
         </div>
     )
 }

@@ -1,3 +1,5 @@
+
+
 import { getAuth, onAuthStateChanged } from 'firebase/auth'
 import { imageData } from '../lib/images'
 import { DndContext, DragEndEvent, closestCenter } from '@dnd-kit/core'
@@ -64,11 +66,11 @@ export default function Home() {
     return (
         <>
             <Navbar handleSearch={handleSearch} />
-            <main className="overflow-y-auto h-screen pb-20 max-w-[1124px] mx-auto no-scrollbar">
+            <main className="lg:overflow-y-auto h-screen pb-20 max-w-[1124px] mx-auto no-scrollbar">
                 {
                     show ?
                         <section
-                            className='px-3 py-4 grid  grid-cols-custom gap-4 no-scrollbar'>
+                            className='px-3 py-4 grid grid-cols-2  md:grid-cols-custom gap-4 no-scrollbar'>
                             <DndContext collisionDetection={closestCenter} onDragEnd={(e) => onDragEnd(e)}>
                                 <SortableContext items={images} strategy={rectSortingStrategy}>
                                     {
